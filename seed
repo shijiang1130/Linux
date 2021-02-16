@@ -1,0 +1,3 @@
+  $ apt-get install debconf-utils
+  $ debconf-get-selections --installer > seed.txt
+  $ debconf-get-selections >> seed.txt
