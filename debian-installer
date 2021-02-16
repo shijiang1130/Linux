@@ -7,6 +7,54 @@ initrd 用于辅助内核初始化安装器环境的initrd,
 加载 kernel，initrd，加载额外的Udeb包,完成安装界面初始化环境;
 如果启动参数包含preseed文件，则会按照preseed文件内定义的规则自动执行,如果没有对应的规则,则返回交互界面;
 交互界面会引导用户完成键盘，时区，主机名，网络，用户密码，分区等设置，存储在当前环境中;
+
+advanced options
+expert install
+choose language: English
+country: other, Caribbean, Bermuda
+localle settings: default of United States
+no additional locales
+keyboard: default of American English
+cd: should auto-detect and mount
+installer components: no additional components needed
+network hardware: auto-detection
+configure network: use enp0s17 as the first interface
+auto-configure network: yes if dhcp is available, no if static configuration required
+hostname: dmsq01 (or one matching your own requirements)
+domain name: example.com (or one matching your own requirements)
+users and passwords, enable shadow passwords
+login as root: yes (this allows login as root, substitute your own requirements)
+supply a password
+a normal user account is not created (create one if your policies require it)
+configure the clock: NTP: no (allow if you have an ntp server available)
+time zone: Atantic/Bermuda
+detect disks: auto-detection
+partition disks: guided - use entire disk
+partition: select VBOX HARDDISK
+partitioning scheme: all in one partition (change if your policies require it)
+finish partitioning and write changes
+install the base system
+kernel to install: linux-image-4.2.0-1-amd64 (as of 2015/12/29)
+drivers to include: targeted
+configure package manager:
+network mirror: yes
+protocol: http (change as policies require)
+mirror country: US, ftp.us.debian.org (or one nearer to you)
+use non-free software: default of no
+use contrib software: default of no
+services to use: defaults: security updates only
+select and install software:
+popularity contest: no
+software to install: deselect everything, select 'SSH server' only
+install grub on hard disk
+install grub on master boot record
+boot loader installation: /dev/sda
+EFI removable path: default no
+finish the installation
+system clock to UTC: default yes
+installation complete: continue
+reboots to login prompt
+
 完成分区格式化等操作后，该磁盘会被挂载到/target，安装器会调用debootstrap在 /target 完成核心系统的构建;
 安装器通过执行 chroot 操作进入以 /target
 为根的系统中，完成软件源的更新，执行 tasksel，弹出可选软件菜单;
